@@ -1,0 +1,6 @@
+framework module Pods_ButtonMenuPopupTests {
+  umbrella header "Pods-ButtonMenuPopupTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
