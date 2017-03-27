@@ -24,15 +24,28 @@ class ButtonViewModel {
     init(type: ButtonType) {
         self.type = type
     
-        setupActivityButtonModels()
+        setupButtonModels()
     }
     
-    private func setupActivityButtonModels() {
-        // TODO: setup from user defaults
+    private var buttonModelFromUserDefaultsHelper: [ButtonModel] {
         let format = type == .fruit ? "icon_fruit_%@" : "icon_vegetable_%@"
         let buttonColor = type == .fruit ? UIColor(red: 117 / 255, green: 118 / 255, blue: 179 / 255, alpha: 1.0) : UIColor(red: 86 / 255, green: 191 / 255, blue: 244 / 255, alpha: 1.0)
-        let models = type.buttonStrings.map { ButtonModel(image: String(format: format, $0), title: $0, color: buttonColor, type: type) }
-        self.buttonModels = Variable(models)
+        switch type {
+        case .fruit:
+            return UserDefaultsHelper.Fruits.buttonsSequence.map {
+                let visible = UserDefaultsHelper.Fruits.enabledButtons.contains($0)
+                return ButtonModel(image: String(format: format, $0), title: $0, color: buttonColor, type: type, isVisible: visible)
+            }
+        case .vegetable:
+            return UserDefaultsHelper.Vegetable.buttonsSequence.map {
+                let visible = UserDefaultsHelper.Vegetable.enabledButtons.contains($0)
+                return ButtonModel(image: String(format: format, $0), title: $0, color: buttonColor, type: type, isVisible: visible)
+            }
+        }
+    }
+    
+    private func setupButtonModels() {
+        buttonModels = Variable(buttonModelFromUserDefaultsHelper)
     }
     
     func saveButtonSequence(fromSourceIndex sourceIndex: Int, destinationIndex: Int) {
@@ -44,10 +57,21 @@ class ButtonViewModel {
     }
     
     func confirmCurrentButtonSettings() {
-        // TODO
+        switch type {
+        case .fruit:
+            UserDefaultsHelper.Fruits.buttonsSequence = buttonModels.value.map { $0.buttonTitle }
+            UserDefaultsHelper.Fruits.enabledButtons = buttonModels.value.filter({ $0.isVisible.value }).map { $0.buttonTitle }
+        case .vegetable:
+            UserDefaultsHelper.Vegetable.buttonsSequence = buttonModels.value.map { $0.buttonTitle }
+            UserDefaultsHelper.Vegetable.enabledButtons = buttonModels.value.filter({ $0.isVisible.value }).map { $0.buttonTitle }
+        }
     }
     
     func cancelCurrentButtonSettings() {
-        // TODO
+        print("\(buttonModels.value), \(buttonModelFromUserDefaultsHelper) ~~~~~~~~~~~~~~~~~~`")
+        if buttonModels.value != buttonModelFromUserDefaultsHelper {
+            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+            buttonModels.value = buttonModelFromUserDefaultsHelper
+        }
     }
 }

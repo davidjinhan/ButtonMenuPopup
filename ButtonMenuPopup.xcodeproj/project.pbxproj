@@ -26,6 +26,7 @@
 		0A8C5B5E1E88D838009E959C /* CellRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B5D1E88D838009E959C /* CellRegistration.swift */; };
 		0A8C5B601E88DF51009E959C /* ButtonsBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B5F1E88DF51009E959C /* ButtonsBackgroundView.swift */; };
 		0A8C5B621E88EB87009E959C /* ButtonSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B611E88EB86009E959C /* ButtonSettingsViewModel.swift */; };
+		0A8C5B641E88EE73009E959C /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B631E88EE73009E959C /* UserDefaultsHelper.swift */; };
 		2E774DF0B22B34C336950302 /* Pods_ButtonMenuPopup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B5DC4D0A264C1B78BB7FCC3 /* Pods_ButtonMenuPopup.framework */; };
 		76BBCE1FB82D057372CC2AD6 /* Pods_ButtonMenuPopupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCC12365745A5E6B881DE86 /* Pods_ButtonMenuPopupUITests.framework */; };
 		A1225C1A65506DA53A4A0E30 /* Pods_ButtonMenuPopupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FBF2A4346A1D37CE9B9892 /* Pods_ButtonMenuPopupTests.framework */; };
@@ -75,6 +76,7 @@
 		0A8C5B5D1E88D838009E959C /* CellRegistration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellRegistration.swift; sourceTree = "<group>"; };
 		0A8C5B5F1E88DF51009E959C /* ButtonsBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsBackgroundView.swift; sourceTree = "<group>"; };
 		0A8C5B611E88EB86009E959C /* ButtonSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSettingsViewModel.swift; sourceTree = "<group>"; };
+		0A8C5B631E88EE73009E959C /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		2B5DC4D0A264C1B78BB7FCC3 /* Pods_ButtonMenuPopup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ButtonMenuPopup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4849AA0257A5EB8D4FEAC1FC /* Pods-ButtonMenuPopupUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButtonMenuPopupUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ButtonMenuPopupUITests/Pods-ButtonMenuPopupUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6C903B6F8DB262E9B5498812 /* Pods-ButtonMenuPopupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButtonMenuPopupUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ButtonMenuPopupUITests/Pods-ButtonMenuPopupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				0A8C5B5D1E88D838009E959C /* CellRegistration.swift */,
 				0A8C5B5F1E88DF51009E959C /* ButtonsBackgroundView.swift */,
 				0A8C5B611E88EB86009E959C /* ButtonSettingsViewModel.swift */,
+				0A8C5B631E88EE73009E959C /* UserDefaultsHelper.swift */,
 			);
 			path = ButtonMenuPopup;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A8C5B641E88EE73009E959C /* UserDefaultsHelper.swift in Sources */,
 				0A8C5B601E88DF51009E959C /* ButtonsBackgroundView.swift in Sources */,
 				0A8C5B4C1E88B5BA009E959C /* ButtonMenuPopupManager.swift in Sources */,
 				0A8C5B561E88D6E8009E959C /* ButtonModel.swift in Sources */,

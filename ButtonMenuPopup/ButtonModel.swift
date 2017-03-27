@@ -47,5 +47,5 @@ extension ButtonModel: Equatable {
 }
 
 func == (lhs: ButtonModel, rhs: ButtonModel) -> Bool {
-    return (lhs.buttonTitle == rhs.buttonTitle)
+    return (lhs.buttonTitle == rhs.buttonTitle && lhs.isVisible.value == rhs.isVisible.value)
 }
