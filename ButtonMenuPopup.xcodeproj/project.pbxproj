@@ -18,6 +18,13 @@
 		0A8C5B4E1E88B693009E959C /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B4D1E88B693009E959C /* UIView+extension.swift */; };
 		0A8C5B501E88B7B4009E959C /* Presentables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B4F1E88B7B4009E959C /* Presentables.swift */; };
 		0A8C5B521E88C1CE009E959C /* ButtonsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B511E88C1CE009E959C /* ButtonsPageView.swift */; };
+		0A8C5B541E88D620009E959C /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B531E88D620009E959C /* ButtonsView.swift */; };
+		0A8C5B561E88D6E8009E959C /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B551E88D6E8009E959C /* ButtonModel.swift */; };
+		0A8C5B581E88D730009E959C /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B571E88D730009E959C /* ButtonViewModel.swift */; };
+		0A8C5B5B1E88D7BD009E959C /* ButtonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B591E88D7BD009E959C /* ButtonsCollectionViewCell.swift */; };
+		0A8C5B5C1E88D7BD009E959C /* ButtonsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A8C5B5A1E88D7BD009E959C /* ButtonsCollectionViewCell.xib */; };
+		0A8C5B5E1E88D838009E959C /* CellRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B5D1E88D838009E959C /* CellRegistration.swift */; };
+		0A8C5B601E88DF51009E959C /* ButtonsBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C5B5F1E88DF51009E959C /* ButtonsBackgroundView.swift */; };
 		2E774DF0B22B34C336950302 /* Pods_ButtonMenuPopup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B5DC4D0A264C1B78BB7FCC3 /* Pods_ButtonMenuPopup.framework */; };
 		76BBCE1FB82D057372CC2AD6 /* Pods_ButtonMenuPopupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCC12365745A5E6B881DE86 /* Pods_ButtonMenuPopupUITests.framework */; };
 		A1225C1A65506DA53A4A0E30 /* Pods_ButtonMenuPopupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FBF2A4346A1D37CE9B9892 /* Pods_ButtonMenuPopupTests.framework */; };
@@ -59,6 +66,13 @@
 		0A8C5B4D1E88B693009E959C /* UIView+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		0A8C5B4F1E88B7B4009E959C /* Presentables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentables.swift; sourceTree = "<group>"; };
 		0A8C5B511E88C1CE009E959C /* ButtonsPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsPageView.swift; sourceTree = "<group>"; };
+		0A8C5B531E88D620009E959C /* ButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
+		0A8C5B551E88D6E8009E959C /* ButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
+		0A8C5B571E88D730009E959C /* ButtonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
+		0A8C5B591E88D7BD009E959C /* ButtonsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsCollectionViewCell.swift; sourceTree = "<group>"; };
+		0A8C5B5A1E88D7BD009E959C /* ButtonsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonsCollectionViewCell.xib; sourceTree = "<group>"; };
+		0A8C5B5D1E88D838009E959C /* CellRegistration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellRegistration.swift; sourceTree = "<group>"; };
+		0A8C5B5F1E88DF51009E959C /* ButtonsBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsBackgroundView.swift; sourceTree = "<group>"; };
 		2B5DC4D0A264C1B78BB7FCC3 /* Pods_ButtonMenuPopup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ButtonMenuPopup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4849AA0257A5EB8D4FEAC1FC /* Pods-ButtonMenuPopupUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButtonMenuPopupUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ButtonMenuPopupUITests/Pods-ButtonMenuPopupUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6C903B6F8DB262E9B5498812 /* Pods-ButtonMenuPopupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ButtonMenuPopupUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ButtonMenuPopupUITests/Pods-ButtonMenuPopupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +146,13 @@
 				0A8C5B4D1E88B693009E959C /* UIView+extension.swift */,
 				0A8C5B4F1E88B7B4009E959C /* Presentables.swift */,
 				0A8C5B511E88C1CE009E959C /* ButtonsPageView.swift */,
+				0A8C5B531E88D620009E959C /* ButtonsView.swift */,
+				0A8C5B551E88D6E8009E959C /* ButtonModel.swift */,
+				0A8C5B571E88D730009E959C /* ButtonViewModel.swift */,
+				0A8C5B591E88D7BD009E959C /* ButtonsCollectionViewCell.swift */,
+				0A8C5B5A1E88D7BD009E959C /* ButtonsCollectionViewCell.xib */,
+				0A8C5B5D1E88D838009E959C /* CellRegistration.swift */,
+				0A8C5B5F1E88DF51009E959C /* ButtonsBackgroundView.swift */,
 			);
 			path = ButtonMenuPopup;
 			sourceTree = "<group>";
@@ -294,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A8C5B241E88A4D5009E959C /* LaunchScreen.storyboard in Resources */,
+				0A8C5B5C1E88D7BD009E959C /* ButtonsCollectionViewCell.xib in Resources */,
 				0A8C5B211E88A4D5009E959C /* Assets.xcassets in Resources */,
 				0A8C5B1F1E88A4D5009E959C /* Main.storyboard in Resources */,
 			);
@@ -458,10 +480,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A8C5B601E88DF51009E959C /* ButtonsBackgroundView.swift in Sources */,
 				0A8C5B4C1E88B5BA009E959C /* ButtonMenuPopupManager.swift in Sources */,
+				0A8C5B561E88D6E8009E959C /* ButtonModel.swift in Sources */,
 				0A8C5B521E88C1CE009E959C /* ButtonsPageView.swift in Sources */,
 				0A8C5B481E88A844009E959C /* ButtonMenuPopupViewController.swift in Sources */,
 				0A8C5B501E88B7B4009E959C /* Presentables.swift in Sources */,
+				0A8C5B5B1E88D7BD009E959C /* ButtonsCollectionViewCell.swift in Sources */,
+				0A8C5B541E88D620009E959C /* ButtonsView.swift in Sources */,
+				0A8C5B581E88D730009E959C /* ButtonViewModel.swift in Sources */,
+				0A8C5B5E1E88D838009E959C /* CellRegistration.swift in Sources */,
 				0A8C5B4E1E88B693009E959C /* UIView+extension.swift in Sources */,
 				0A8C5B1A1E88A4D5009E959C /* AppDelegate.swift in Sources */,
 			);

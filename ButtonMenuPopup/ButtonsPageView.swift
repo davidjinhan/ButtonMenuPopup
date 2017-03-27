@@ -12,8 +12,8 @@ import RxSwift
 class ButtonsPageView: UIView {
 
     enum LocalizedString {
-        static let buttonType1 = NSLocalizedString("Button Type 1", comment: "")
-        static let buttonType2 = NSLocalizedString("Button Type 2", comment: "")
+        static let buttonType1 = NSLocalizedString("Add Fruits", comment: "")
+        static let buttonType2 = NSLocalizedString("Add Vegetables", comment: "")
         static let buttonSetting = NSLocalizedString("Button Edit", comment: "")
     }
     
@@ -68,6 +68,14 @@ class ButtonsPageView: UIView {
     private var pageControl: UIPageControl!
     private var confirmButton: UIButton!
     private var cancelButton: UIButton!
+    
+    private let fruitButtonModels: [String] = [
+        "citrus", "pear", "apple", "avocado", "banana"
+    ]
+    
+    private let vegetableButtonModels: [String] = [
+        "corn", "tomato", "mushroom", "carrot"
+    ]
     
     // MARK: - Setup
     
@@ -194,7 +202,37 @@ class ButtonsPageView: UIView {
     }
     
     private func setupButtonsView() {
-        // TODO
+        let fruitButtonsView = ButtonsView(type: .fruit)
+        fruitButtonsView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(fruitButtonsView)
+        fruitButtonsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        fruitButtonsView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        fruitButtonsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.0).isActive = true
+        fruitButtonsView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 1.0).isActive = true
+        
+        let vegetableButtonsView = ButtonsView(type: .vegetable)
+        vegetableButtonsView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(vegetableButtonsView)
+        vegetableButtonsView.leadingAnchor.constraint(equalTo: fruitButtonsView.trailingAnchor).isActive = true
+        vegetableButtonsView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        vegetableButtonsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.0).isActive = true
+        vegetableButtonsView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 1.0).isActive = true
+        
+        cancelButton.rx.tap
+            .subscribe(onNext: {
+                fruitButtonsView.cancelSetting()
+                vegetableButtonsView.cancelSetting()
+                // TODO: set setting view model
+            })
+            .addDisposableTo(disposeBag)
+        
+        confirmButton.rx.tap
+            .subscribe(onNext: {
+                fruitButtonsView.confirmSetting()
+                vegetableButtonsView.confirmSetting()
+                // TODO: set setting view model
+            })
+            .addDisposableTo(disposeBag)
     }
     
     private func updateTopLabel() {

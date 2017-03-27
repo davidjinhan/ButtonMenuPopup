@@ -226,6 +226,7 @@ protocol ImagePresentable: Presentable {
     var image: UIImage { get set }
     var imageBackgroundColor: UIColor { get set }
     var cornerRadius: CGFloat? { get set }
+    var imageTintColor: UIColor? { get }
 }
 
 extension ImagePresentable {
@@ -234,5 +235,25 @@ extension ImagePresentable {
     }
     var cornerRadius: CGFloat? {
         return nil
+    }
+    var imageTintColor: UIColor? {
+        return nil
+    }
+}
+
+extension UIImageView {
+    func configure(withPresenter presenter: Presentable) {
+        if let presenter = presenter as? ImagePresentable {
+            image = presenter.image
+            backgroundColor = presenter.imageBackgroundColor
+            if let cornerRadius = presenter.cornerRadius {
+                layer.masksToBounds = true
+                layer.cornerRadius = cornerRadius
+            }
+            if let imageTintColor = presenter.imageTintColor {
+                print("!!!!!!!!!!!!!!!!!!!")
+                tintColor = imageTintColor
+            }
+        }
     }
 }
