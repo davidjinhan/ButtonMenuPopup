@@ -93,14 +93,19 @@ class ButtonMenuPopupManager: NSObject {
     // MARK: - Helper Methods
     
     private func setupSettingViewModel() {
-        
+        ButtonSettingViewModel.shared.onSetting.asObservable()
+            .subscribe(onNext: { [weak self] on in
+                self?.confirmButtons(show: on)
+                self?.settingButton(fade: on)
+            })
+            .addDisposableTo(disposeBag)
     }
     
     private func setupSettingButton() {
         settingButton = UIButton(type: .custom)
         settingButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                // TODO: settingViewModel actions
+            .subscribe(onNext: {
+                ButtonSettingViewModel.shared.settingValueChange()
             })
             .addDisposableTo(disposeBag)
         
@@ -194,8 +199,8 @@ class ButtonMenuPopupManager: NSObject {
                 self?.hideAnimation?()
                 self?.settingButton(show: false)
                 self?.containerView(show: false)
-            }, completion: { [weak self] _ in
-                // TODO: setting mode false
+            }, completion: { _ in
+                ButtonSettingViewModel.shared.onSetting.value = false
                 completion?()
         })
         

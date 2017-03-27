@@ -67,8 +67,7 @@ class ButtonsCollectionViewCell: UICollectionViewCell, NibLoadableView {
             if let isVisible = isVisible {
                 disposable?.dispose()
                 
-                // TODO : from setting view model observable
-                let onSetting = Variable(false).asObservable()
+                let onSetting = ButtonSettingViewModel.shared.onSetting.asObservable()
                 
                 disposable = Observable.combineLatest(isVisible, onSetting) { visible, setting in
                     return (visible, setting)

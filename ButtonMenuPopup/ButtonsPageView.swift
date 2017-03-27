@@ -131,8 +131,7 @@ class ButtonsPageView: UIView {
         scrollView.showsVerticalScrollIndicator = false
         addSubview(scrollView)
         
-        // TODO : set a aspect ratio by a buttons view
-        scrollView.widthAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 375 / 200).isActive = true
+        scrollView.widthAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: ButtonsView.LayoutConstants.viewAspectRatio).isActive = true
         scrollView.topAnchor.constraint(equalTo: topTitleLabel.bottomAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
@@ -222,7 +221,7 @@ class ButtonsPageView: UIView {
             .subscribe(onNext: {
                 fruitButtonsView.cancelSetting()
                 vegetableButtonsView.cancelSetting()
-                // TODO: set setting view model
+                ButtonSettingViewModel.shared.settingValueChange()
             })
             .addDisposableTo(disposeBag)
         
@@ -230,20 +229,27 @@ class ButtonsPageView: UIView {
             .subscribe(onNext: {
                 fruitButtonsView.confirmSetting()
                 vegetableButtonsView.confirmSetting()
-                // TODO: set setting view model
+                ButtonSettingViewModel.shared.settingValueChange()
             })
             .addDisposableTo(disposeBag)
     }
     
     private func updateTopLabel() {
         var presenter = TopLabelPresenter()
-        // TODO: update a top label by setting
-        presenter.text = pageControl.currentPage == 0 ? LocalizedString.buttonType1 : LocalizedString.buttonType2
+        if ButtonSettingViewModel.shared.onSetting.value {
+            presenter.text = LocalizedString.buttonSetting
+        } else {
+            presenter.text = pageControl.currentPage == 0 ? LocalizedString.buttonType1 : LocalizedString.buttonType2
+        }
         topTitleLabel.configure(withPresenter: presenter)
     }
     
     private func setupSettingModel() {
-        // TODO: update a top label by setting
+        ButtonSettingViewModel.shared.onSetting.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.updateTopLabel()
+            })
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: - APIs

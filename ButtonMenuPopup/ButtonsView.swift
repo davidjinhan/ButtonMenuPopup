@@ -57,35 +57,36 @@ class ButtonsView: UIView {
     // MARK: - Selectors
     
     func handleLongGesture(_ gesture: UILongPressGestureRecognizer) {
-        // TODO : check setting mode
-        switch(gesture.state) {
-        case .began:
-            guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: collectionView)), selectedIndexPath.row < buttonViewModel.enabledButtons.count else {
-                break
-            }
-            if let cell = collectionView.cellForItem(at: selectedIndexPath) as? ButtonsCollectionViewCell {
-                movingCell = cell
-                cell.effect(forSelected: true)
-            }
-            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
-        case .changed:
-            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
-        case .ended:
-            movingCell?.effect(forSelected: false)
-            movingCell = nil
-            if let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: collectionView)) {
-                if selectedIndexPath.row >= buttonViewModel.enabledButtons.count {
-                    collectionView.cancelInteractiveMovement()
-                } else {
-                    collectionView.endInteractiveMovement()
+        if ButtonSettingViewModel.shared.onSetting.value {
+            switch(gesture.state) {
+            case .began:
+                guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: collectionView)), selectedIndexPath.row < buttonViewModel.enabledButtons.count else {
+                    break
                 }
-            } else {
+                if let cell = collectionView.cellForItem(at: selectedIndexPath) as? ButtonsCollectionViewCell {
+                    movingCell = cell
+                    cell.effect(forSelected: true)
+                }
+                collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            case .changed:
+                collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+            case .ended:
+                movingCell?.effect(forSelected: false)
+                movingCell = nil
+                if let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: collectionView)) {
+                    if selectedIndexPath.row >= buttonViewModel.enabledButtons.count {
+                        collectionView.cancelInteractiveMovement()
+                    } else {
+                        collectionView.endInteractiveMovement()
+                    }
+                } else {
+                    collectionView.cancelInteractiveMovement()
+                }
+            default:
+                movingCell?.effect(forSelected: false)
+                movingCell = nil
                 collectionView.cancelInteractiveMovement()
             }
-        default:
-            movingCell?.effect(forSelected: false)
-            movingCell = nil
-            collectionView.cancelInteractiveMovement()
         }
     }
     
@@ -127,8 +128,12 @@ class ButtonsView: UIView {
         collectionView.backgroundView = circleBackgroundView
         circleBackgroundView.isHidden = true
         
-        
-        // TODO : bind with setting view model
+        ButtonSettingViewModel.shared.onSetting.asObservable()
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] on in
+                self?.circleBackgroundView.isHidden = !on
+            })
+            .addDisposableTo(disposeBag)
     }
     
     private func addBinds(toViewModel viewModel: ButtonViewModel) {
@@ -141,11 +146,10 @@ class ButtonsView: UIView {
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell: ButtonsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
                 let image = element.buttonImage.withRenderingMode(.alwaysTemplate)
-                let buttonColor = UIColor(red: 117 / 255, green: 118 / 255, blue: 179 / 255, alpha: 1.0)
                 let presenter = ButtonsCollectionViewPresenter(text: element.buttonTitle,
                                                                textColor: .black,
                                                                image: image,
-                                                               imageBackgroundColor: buttonColor,
+                                                               imageBackgroundColor: element.buttonColor,
                                                                cornerRadius: buttonWidth / 2)
                 cell.configure(withPresenter: presenter)
                 cell.buttonWidth = buttonWidth
@@ -173,8 +177,11 @@ class ButtonsView: UIView {
         
         collectionView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
-                // TODO : check setting view model
-                self?.itemSelectedOnSetting(atIndexPath: indexPath)
+                if ButtonSettingViewModel.shared.onSetting.value {
+                    self?.itemSelectedOnSetting(atIndexPath: indexPath)
+                } else {
+                    self?.itemSelectedToAdd(atIndexPath: indexPath)
+                }
             })
             .addDisposableTo(disposeBag)
     }

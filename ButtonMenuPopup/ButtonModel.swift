@@ -29,12 +29,14 @@ enum ButtonType {
 struct ButtonModel {
     var buttonImage: UIImage
     var buttonTitle: String
+    var buttonColor: UIColor
     var type: ButtonType
     var isVisible: Variable<Bool>
     
-    init(image: String, title: String, type: ButtonType, isVisible: Bool = true) {
+    init(image: String, title: String, color: UIColor, type: ButtonType, isVisible: Bool = true) {
         self.buttonImage = UIImage(named: image)!.withRenderingMode(.alwaysTemplate)
         self.buttonTitle = title
+        self.buttonColor = color
         self.type = type
         self.isVisible = Variable(isVisible)
     }
