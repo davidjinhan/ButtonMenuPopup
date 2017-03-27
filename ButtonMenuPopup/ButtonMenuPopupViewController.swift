@@ -24,21 +24,30 @@ class ButtonMenuPopupViewController: UITabBarController {
         var buttonBackgroundColor: UIColor = .white
     }
     
+    private var menuButton: UIButton!
+    
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupMenuButtonPopupProperties()
         setupMenuButton()
+        setupMenuButtonPopupProperties()
     }
     
     private func setupMenuButtonPopupProperties() {
         ButtonMenuPopupManager.shared.bottomHeight = tabBar.bounds.height
+        ButtonMenuPopupManager.shared.showAnimation = { [weak self] in
+            let buttonRotateTransform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+            self?.menuButton.transform = buttonRotateTransform
+        }
+        ButtonMenuPopupManager.shared.hideAnimation = { [weak self] in
+            self?.menuButton.transform = CGAffineTransform.identity
+        }
     }
     
     private func setupMenuButton() {
-        let menuButton = UIButton(type: .custom)
+        menuButton = UIButton(type: .custom)
         menuButton.configure(withPresenter: CenterButtonPresenter())
         
         menuButton.translatesAutoresizingMaskIntoConstraints = false

@@ -65,7 +65,7 @@ class ButtonMenuPopupManager: NSObject {
     private var settingButtonShowConstraint: NSLayoutConstraint!
     
     private var containerView: UIView!
-    private var diaryButton: UIButton!
+    private var butttonsPageView: ButtonsPageView!
     
     private var containerViewHideConstraint: NSLayoutConstraint!
     private var containerViewShowConstraint: NSLayoutConstraint!
@@ -145,7 +145,16 @@ class ButtonMenuPopupManager: NSObject {
     }
     
     private func setupButtonsPageView() {
-        // TODO: setup buttons page view
+        butttonsPageView = ButtonsPageView()
+        butttonsPageView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(butttonsPageView)
+        
+        butttonsPageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        butttonsPageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
+        butttonsPageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        butttonsPageView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        
+        butttonsPageView.confirmButtons(show: false)
     }
     
     private func setupContainerView() {
@@ -241,7 +250,7 @@ class ButtonMenuPopupManager: NSObject {
     
     private func confirmButtons(show: Bool) {
         if show {
-            // TODO: show or hide confirm button
+            butttonsPageView.confirmButtons(show: show)
         }
         UIView.animate(
             withDuration: ViewConstants.settingAnimationDuration,
@@ -252,7 +261,7 @@ class ButtonMenuPopupManager: NSObject {
             },
             completion: { [weak self] _ in
                 if !show {
-                    // TODO: show or hide confirm button
+                    self?.butttonsPageView.confirmButtons(show: show)
                 }
         })
     }
@@ -291,8 +300,7 @@ class ButtonMenuPopupManager: NSObject {
     private func containerView(show: Bool, withConfirmButton: Bool = false) {
         if show {
             containerViewHideConstraint.isActive = false
-            // TODO: a constant of bottom constraint depends on whether the confirm button is visible
-            let bottomConstant: CGFloat = 0
+            let bottomConstant: CGFloat = withConfirmButton ? 0 : ButtonsPageView.ViewConstants.confirmButtonHeight
             containerViewShowConstraint.constant = bottomConstant
             containerViewShowConstraint.isActive = true
         } else {
