@@ -251,7 +251,6 @@ extension UIImageView {
                 layer.cornerRadius = cornerRadius
             }
             if let imageTintColor = presenter.imageTintColor {
-                print("!!!!!!!!!!!!!!!!!!!")
                 tintColor = imageTintColor
             }
         }

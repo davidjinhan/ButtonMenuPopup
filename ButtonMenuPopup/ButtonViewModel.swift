@@ -68,9 +68,7 @@ class ButtonViewModel {
     }
     
     func cancelCurrentButtonSettings() {
-        print("\(buttonModels.value), \(buttonModelFromUserDefaultsHelper) ~~~~~~~~~~~~~~~~~~`")
         if buttonModels.value != buttonModelFromUserDefaultsHelper {
-            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^")
             buttonModels.value = buttonModelFromUserDefaultsHelper
         }
     }
