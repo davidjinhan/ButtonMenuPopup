@@ -16,20 +16,30 @@ class ButtonMenuPopupViewController: UITabBarController {
         static let menuButtonWidth: CGFloat = 44
     }
     
+    struct CenterButtonPresenter: ImageButtonPresentable {
+        var buttonImage = UIImage(named: "icon_plus_filled")!.withRenderingMode(.alwaysTemplate)
+        var buttonTintColor: UIColor? {
+            return .purple
+        }
+        var buttonBackgroundColor: UIColor = .white
+    }
+    
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupMenuButtonPopupProperties()
         setupMenuButton()
+    }
+    
+    private func setupMenuButtonPopupProperties() {
+        ButtonMenuPopupManager.shared.bottomHeight = tabBar.bounds.height
     }
     
     private func setupMenuButton() {
         let menuButton = UIButton(type: .custom)
-        let plusIcon = UIImage(named: "icon_plus_filled")?.withRenderingMode(.alwaysTemplate)
-        menuButton.setImage(plusIcon, for: .normal)
-        menuButton.setTitle(nil, for: .normal)
-        menuButton.tintColor = .purple
+        menuButton.configure(withPresenter: CenterButtonPresenter())
         
         menuButton.translatesAutoresizingMaskIntoConstraints = false
         menuButton.widthAnchor.constraint(equalToConstant: Constants.menuButtonWidth).isActive = true
@@ -38,5 +48,10 @@ class ButtonMenuPopupViewController: UITabBarController {
         tabBar.addSubview(menuButton)
         menuButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor).isActive = true
         menuButton.centerYAnchor.constraint(equalTo: tabBar.centerYAnchor).isActive = true
+        
+        menuButton.rx.tap
+            .bindNext {
+                ButtonMenuPopupManager.shared.showOrHideActivityButtons()
+            }.addDisposableTo(disposeBag)
     }
 }
